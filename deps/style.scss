@@ -8,15 +8,20 @@ html, body {
   padding: 0;
   box-sizing: border-box;
   height: 100%;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 h2 {
-  display: block;
   position: absolute;
-  top: 15%;
+  top: 5%;
   margin: 0 auto;
 }
+h3{
+  position: absolute;
+  top: 10%;
+  margin: 0 auto;
+}
+
 .container {
   height: 100%;
   display: flex;
