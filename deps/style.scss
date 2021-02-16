@@ -1,0 +1,73 @@
+// vars
+$primary-color: #dcf06dd8;
+$transparent: #d4d4d400;
+
+// reset
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+}
+
+h2 {
+  display: block;
+  position: absolute;
+  top: 15%;
+  margin: 0 auto;
+}
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(50deg, #b0fafab2, #ffffff);
+
+  .chart-container {
+    padding: 10%;
+    background: $transparent;
+    
+  }
+}
+
+svg {
+  background-color: $transparent;
+}
+
+#tooltip {
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  text-align: justify;
+  padding: 5px;
+  box-shadow: 1px 1px 10px;
+  border-radius: 10px;
+  pointer-events: none;  
+  background-color: rgb(28, 182, 182);
+}
+
+#legend {
+  display: flex;
+  position: absolute;
+  right: 10%;
+  top: 30%;
+  flex-direction: column;
+  text-align: justify;
+  padding: 5px;
+  
+  p{
+    display: inline-grid;
+    grid-template-columns: 220px 10px;
+    font-size: 0.9em;
+
+    span {
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+      border: 1px solid black;
+    }
+  }
+}
