@@ -9,7 +9,7 @@ html, body {
 .container {
   display: flex;
   justify-content: flex-start;
-  padding: 0 0 2em 1em;
+  padding: 0 0 2em 0em;
   background: linear-gradient(50deg, #b0fafab2, #ffffff);
 }
 .container .chart-container {

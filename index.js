@@ -3,7 +3,7 @@ const width = 1280
 const height = window.screen.availHeight * .85
 const padding= 60;
 
-const barHeight = (height - 2 * padding) / 12;
+const barHeight = Math.ceil(height - 2 * padding) / 12 ;
 
 
 
@@ -29,13 +29,13 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
 
   const yScale =
     d3.scaleTime()
-      .domain([new Date(2020, 11, 31), new Date(2020, 0, 1)])
-      .range([height - padding, padding]);
+      .domain([new Date(2020, 0, 1), new Date(2020, 11, 30)])
+      .range([padding, height - padding]);
   
   const colorScale = 
     d3.scaleLinear()
     .domain(d3.extent(dataset,d => d.variance))
-    .range([0, 1])
+    .range([1,0])
 
   // !AXIS FORMAT
   const xAxis =
@@ -68,6 +68,8 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
     .attr("transform", `translate(${padding}, 0)`)
     .attr('id', 'y-axis')
     .call(yAxis)
+    .call(g => g.select(".domain")
+      .attr('length', 10))
 
 
   // !DOTS
@@ -77,8 +79,8 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
     .enter()
     .append('rect')
     .attr('x', (d) => xScale(d.year) - padding +1)
-    .attr('y', (d) => yScale(new Date(2020, d.month - 1, 31)))
-    .attr("transform", `translate(0,${ - padding})`)
+    .attr('y', (d) => yScale(new Date(2020, d.month - 1)) -2)
+    // .attr("transform", `translate(0,${ -  padding})`)
     .attr('width', barWidth)
     .attr('height', barHeight)
     .attr('class', 'cell')
