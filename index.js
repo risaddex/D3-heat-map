@@ -1,11 +1,10 @@
 //! CONSTS
-const width = window.screen.availWidth
-const height = window.screen.availHeight * 0.75;
-const padding = 60;
+const width = 1280
+const height = window.screen.availHeight * .85
+const padding= 60;
 
-const gridSize = Math.floor(width - padding / 26)
 const barHeight = (height - 2 * padding) / 12;
-const barWidth = (width - padding) / 265;
+
 
 
 //! SVG
@@ -20,6 +19,8 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
   (e, json) => {
   dataset = json.monthlyVariance.map((item,i) => item);
 
+  const barWidth = (width - 2 * padding) / Math.ceil(dataset.length / 12);
+
   //! SCALES
   const xScale =
     d3.scaleLinear()
@@ -27,8 +28,8 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
       .range([padding, width - padding]);
 
   const yScale =
-    d3.scaleLinear()
-      .domain([d3.min(dataset, d => new Date(2000, 0, 10)), d3.max(dataset, d => new Date(2000, 11, 10))])
+    d3.scaleTime()
+      .domain([new Date(2020, 11, 31), new Date(2020, 0, 1)])
       .range([height - padding, padding]);
   
   const colorScale = 
@@ -66,7 +67,8 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
     .append('g')
     .attr("transform", `translate(${padding}, 0)`)
     .attr('id', 'y-axis')
-    .call(yAxis);
+    .call(yAxis)
+
 
   // !DOTS
   const rect = mainYaxis
@@ -74,12 +76,13 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
     .data(dataset)
     .enter()
     .append('rect')
-    .attr('x', (d) => xScale(d.year) - padding)
-    .attr('y', (d) => d.month * barHeight)
+    .attr('x', (d) => xScale(d.year) - padding +1)
+    .attr('y', (d) => yScale(new Date(2020, d.month - 1, 31)))
+    .attr("transform", `translate(0,${ - padding})`)
     .attr('width', barWidth)
-    .attr('height',barHeight)
+    .attr('height', barHeight)
     .attr('class', 'cell')
-    .attr('fill', (d) => d3.interpolateRdYlGn(colorScale(d.variance)))
+    .attr('fill', (d) => d3.interpolateRdYlBu(colorScale(d.variance)))
     .attr('data-month', (d) => d.month -1)
     .attr('data-year', (d) => d.year)
     .attr('data-temp', (d) => json.baseTemperature + d.variance)

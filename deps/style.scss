@@ -8,29 +8,16 @@ html, body {
   padding: 0;
   box-sizing: border-box;
   height: 100%;
-  overflow-y: hidden;
-}
-
-h2 {
-  position: absolute;
-  top: 5%;
-  margin: 0 auto;
-}
-h3{
-  position: absolute;
-  top: 10%;
-  margin: 0 auto;
+  overflow: auto;
 }
 
 .container {
-  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  padding: 0 0 2em 1em;
   background: linear-gradient(50deg, #b0fafab2, #ffffff);
 
   .chart-container {
-    padding: 10%;
     background: $transparent;
     
   }
