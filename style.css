@@ -4,20 +4,34 @@ html, body {
   box-sizing: border-box;
   height: 100%;
   overflow: auto;
+  background: linear-gradient(50deg, #b0fafab2, #ffffff);
 }
 
 .container {
   display: flex;
+  width: 100vw;
+  flex-direction: column;
   justify-content: flex-start;
-  padding: 0 0 2em 0em;
-  background: linear-gradient(50deg, #b0fafab2, #ffffff);
+  padding: 0em 2em;
 }
 .container .chart-container {
   background: #d4d4d400;
 }
 
-svg {
-  background-color: #d4d4d400;
+header {
+  margin-top: 5%;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+}
+header h2 {
+  padding: 0px;
+  margin: 0px;
+}
+header h3 {
+  padding: 0px;
+  margin: 0px;
 }
 
 #tooltip {
@@ -31,28 +45,11 @@ svg {
   box-shadow: 1px 1px 10px;
   border-radius: 10px;
   pointer-events: none;
-  background-color: #1cb6b6;
+  background-color: #d4d4d400;
 }
 
-#legend {
-  display: flex;
-  position: absolute;
-  right: 10%;
-  top: 30%;
-  flex-direction: column;
-  text-align: justify;
-  padding: 5px;
-}
-#legend p {
-  display: inline-grid;
-  grid-template-columns: 220px 10px;
-  font-size: 0.9em;
-}
-#legend p span {
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  border: 1px solid black;
+svg .cell:hover {
+  stroke: black;
 }
 
 /*# sourceMappingURL=style.css.map */
